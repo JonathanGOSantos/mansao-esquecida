@@ -9,7 +9,10 @@ public class EnterCommand implements Command {
     public void execute(Player player, String argument) {
         if (argument.isBlank()) throw new RuntimeException("Ir para onde?");
 
-        Location location = player.go(argument);
+        Location location = player.getCurrentLocation().getExit(argument);
+        if (location.isLocked()) throw new RuntimeException("O cômodo está trancada, para entrar, deve destrancar primeiro.");
+
+        player.go(argument);
 
         System.out.println(TextFormatter.format(location.getLocationInfo(), player));
     }
