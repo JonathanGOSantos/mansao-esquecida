@@ -13,14 +13,17 @@ public class Key extends Item {
     public Key(String name, String description, Location location) {
         super(name, description);
         this.location = location;
+        location.setKey(this);
     }
 
     public Location getLocation() {
         return location;
     }
 
-    public void setRoom(Location location) {
+    public void setLocation(Location location) {
+        this.location.setKey(null);
         this.location = location;
+        this.location.setKey(this);
     }
 
     public void unlock() {

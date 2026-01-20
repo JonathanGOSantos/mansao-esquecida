@@ -22,9 +22,12 @@ public class Player implements Serializable {
 
     private List<Phantom> capturedPhantoms;
 
+    Parser parser = new Parser();
     private String input;
 
     public Player(String name) {
+        parser = new Parser();
+
         this.name = name;
         this.locationPath = new Stack<>();
         this.inventory = new HashSet<>();
@@ -32,6 +35,8 @@ public class Player implements Serializable {
     }
 
     public Player(Save save) {
+        parser = new Parser();
+
         this.name = save.getPlayer().getName();
 
         this.currentLocation = save.getPlayer().getCurrentLocation();
@@ -51,7 +56,7 @@ public class Player implements Serializable {
         return inventory.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(itemName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Você não possui este item."));
+                .orElse(null);
     }
 
     public Item takeItem(String itemName) {
@@ -73,7 +78,9 @@ public class Player implements Serializable {
     }
 
     public void removeItem(String itemName) {
-        inventory.remove(findItem(itemName));
+        Item item = findItem(itemName);
+        if (item == null) throw new IllegalArgumentException("Você não tem esse item.");
+        inventory.remove(item);
     }
 
     public void registerRoom(Location location) {
@@ -137,7 +144,6 @@ public class Player implements Serializable {
     }
 
     public String getResponse() {
-        Parser parser = new Parser();
         return parser.readLine();
     }
 

@@ -1,6 +1,7 @@
 package main.map;
 
 import main.item.Item;
+import main.item.Key;
 import main.phantom.Phantom;
 
 import java.io.Serial;
@@ -24,6 +25,7 @@ public abstract class Location implements Serializable {
     private Set<Item> items;
 
     private Boolean locked;
+    private Key key;
 
     public Location(String location, String code, String description) {
         this.location = location;
@@ -187,5 +189,13 @@ public abstract class Location implements Serializable {
 
     public void removeItem(Item item) {
         items.remove(item);
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
     }
 }

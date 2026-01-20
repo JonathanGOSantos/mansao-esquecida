@@ -19,6 +19,8 @@ public class CommandRegistry {
 
         registerCommand(new CaptureCommand(), "capturar");
 
+        registerCommand(new UnlockCommand(), "destrancar");
+
         registerCommand(new QuitCommand(), "sair");
     }
 

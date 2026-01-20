@@ -63,6 +63,7 @@ public class Mansion implements Serializable {
         HW002.addExit(RO002.getLocation(), RO002);
         HW002.addExit(KT001.getLocation(), KT001);
         HW002.addExit(HW001.getLocation(), HW001);
+        HW002.addExit(HW003.getLocation(), HW003);
 
         HW003.addExit(RO003.getLocation(), RO003);
         HW003.addExit(ST001.getLocation(), ST001);
@@ -79,7 +80,7 @@ public class Mansion implements Serializable {
 
         // Fantasmas
         var PH001 = new FatPhantom(
-                "Mabin Joo",
+                "",
                 "{player} entra em {location} e escuta uma voz dizendo:  \\\"Vou te comer, vou te comer, vou te comer...\\\".\"",
                 "Você pode capturar esse fantasma lhe dando comida.",
                 List.of(FO001.getName())
