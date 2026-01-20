@@ -22,12 +22,9 @@ public class Player implements Serializable {
 
     private List<Phantom> capturedPhantoms;
 
-    Parser parser = new Parser();
     private String input;
 
     public Player(String name) {
-        parser = new Parser();
-
         this.name = name;
         this.locationPath = new Stack<>();
         this.inventory = new HashSet<>();
@@ -35,8 +32,6 @@ public class Player implements Serializable {
     }
 
     public Player(Save save) {
-        parser = new Parser();
-
         this.name = save.getPlayer().getName();
 
         this.currentLocation = save.getPlayer().getCurrentLocation();
@@ -144,6 +139,7 @@ public class Player implements Serializable {
     }
 
     public String getResponse() {
+        Parser parser = new Parser();
         return parser.readLine();
     }
 
