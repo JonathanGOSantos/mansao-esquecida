@@ -14,6 +14,7 @@ public class CommandRegistry {
 
         registerCommand(new LookCommand(), "olhar", "ver");
 
+        registerCommand(new InventoryCommand(), "inventario");
         registerCommand(new TakeCommand(), "pegar", "pegue", "coletar", "colete");
         registerCommand(new DropCommand(), "largar", "solte", "soltar");
 
