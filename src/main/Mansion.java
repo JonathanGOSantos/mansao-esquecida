@@ -80,14 +80,14 @@ public class Mansion implements Serializable {
 
         // Fantasmas
         var PH001 = new FatPhantom(
-                "",
+                "fantasma",
                 "{player} entra em {location} e escuta uma voz dizendo:  \\\"Vou te comer, vou te comer, vou te comer...\\\".\"",
                 "Você pode capturar esse fantasma lhe dando comida.",
                 List.of(FO001.getName())
         );
 
         var PH002 = new IntelligentPhantom(
-                "",
+                "fantasma",
                 "{player} entra {location} e escuta uma voz dizendo:  \\\"Não é a força que me mantém aqui, é o que vocês nunca conseguiram entender...\\\".\"",
                 "Você pode capturar esse fantasma resolvendo um enigma.",
                 "Qual a cor do cavalo branco de Napoleão?",
@@ -95,10 +95,11 @@ public class Mansion implements Serializable {
         );
 
         var PH003 = new FighterPhantom(
-                "",
+                "fantasma",
                 "{player} entra {location} e escuta uma voz dizendo:  \"A luta é tudo o que restou de mim...\".",
                 "Você pode capturar esse fantasma com um espelho.",
-                20
+                20,
+                0
         );
 
         KT001.setPhantom(PH001);

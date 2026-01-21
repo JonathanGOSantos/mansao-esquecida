@@ -15,6 +15,9 @@ public class Player implements Serializable {
 
     private final String name;
 
+    private int health;
+    private int maxHealth;
+
     private Location currentLocation;
     private Stack<Location> locationPath;
 
@@ -26,6 +29,7 @@ public class Player implements Serializable {
 
     public Player(String name) {
         this.name = name;
+        this.maxHealth = 20;
         this.locationPath = new Stack<>();
         this.inventory = new HashSet<>();
         this.capturedPhantoms = new ArrayList<>();
@@ -39,6 +43,8 @@ public class Player implements Serializable {
 
         this.inventory = save.getPlayer().getInventory();
         this.capturedPhantoms = save.getPlayer().getCapturedPhantoms();
+        this.health = save.getPlayer().getHealth();
+        this.maxHealth = save.getPlayer().getMaxHealth();
     }
 
     public String getName() {
@@ -161,6 +167,26 @@ public class Player implements Serializable {
 
     public void setLocationPath(Stack<Location> locationPath) {
         this.locationPath = locationPath;
+    }
+
+    public void takeDamage(int damage) {
+        this.health = Math.max(this.health - damage, 0);
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 }
 
