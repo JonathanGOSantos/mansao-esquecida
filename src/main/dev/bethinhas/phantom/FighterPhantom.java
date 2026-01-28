@@ -48,7 +48,7 @@ public class FighterPhantom extends Phantom {
     public void interact(Player player) {
         if (this.isCaptured()) throw new RuntimeException("O fantasma já está capturado.");
 
-        System.out.println("Qual item deseja utilizar para batalhar o fantasma?");
+        System.out.println("Qual item deseja utilizar para batalhar com o fantasma?");
         Item equippedItem = player.findItem(player.getResponse());
         if (equippedItem != null && equippedItem.getName().equalsIgnoreCase("Espelho")) {
             this.health = 0;
@@ -57,34 +57,46 @@ public class FighterPhantom extends Phantom {
             return;
         }
 
-        int playerDamage = calculateDamage(equippedItem);
-        if (playerDamage < 5 && Math.random() > 0.7) {
-            System.out.println("O " + this.getName() + " desviou do seu ataque!\n");
-        } else {
-            this.health = Math.max(0, this.health - playerDamage);
-            System.out.println("Você acertou o fantasma causando " + playerDamage + " de dano! ");
-            System.out.println("(Vida do Fantasma: " + this.health + "/" + this.maxHealth + ")\n");
+        while (!isCaptured()) {
+            int playerDamage = calculateDamage(equippedItem);
+            if (playerDamage < 5 && Math.random() > 0.7) {
+                System.out.println("Você tenta atacar o fantasma mas erra o golpe.\n");
+            } else {
+                this.health = Math.max(0, this.health - playerDamage);
+                System.out.println("Você ataca o fantasma causando " + playerDamage + " de dano! ");
+                System.out.println("(Vida do Fantasma: " + this.health + "/" + this.maxHealth + ")\n");
+            }
+
+            if (this.health == 0) {
+                this.setCaptured(true);
+                System.out.println("O fantasma cai de joelhos e se dissipa. Você venceu a luta!");
+                return;
+            }
+
+            int phantomDamage = phantomDamage(player);
+            player.takeDamage(phantomDamage);
+            if (phantomDamage == 0) {
+                System.out.println("O fantasma tenta contra-atacar mas erra o golpe.");
+            } else {
+                System.out.println("O fantasma contra ataca e te causa " + phantomDamage + " de dano!");
+            }
+
+            System.out.println("Pressione 'enter' para continuar para o próximo round...");
+            try {
+                System.in.read();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        if (this.health == 0) {
-            this.setCaptured(true);
-            System.out.println("O fantasma cai de joelhos e se dissipa. Você venceu a luta!");
-            return;
-        }
-
-        int phantomDamage = phantomDamage(player);
-        player.takeDamage(phantomDamage);
-
-        System.out.println("O fantasma contra ataca e te causa " + phantomDamage + " de dano!");
     }
 
     private int calculateDamage(Item equippedItem) {
-        if (equippedItem == null) return 10; // Soco
+        if (equippedItem == null) return 1; // Soco
 
         return switch (equippedItem.getName().toLowerCase()) {
             case "espada", "faca" -> (int)(Math.random() * 10) + 5;
             case "pedra" -> 3;
-            default -> 10;
+            default -> 1;
         };
     }
 

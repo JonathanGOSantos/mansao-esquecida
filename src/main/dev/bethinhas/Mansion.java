@@ -98,7 +98,7 @@ public class Mansion implements Serializable {
                 "fantasma",
                 "{player} entra {location} e escuta uma voz dizendo:  \"A luta é tudo o que restou de mim...\".",
                 "Você pode capturar esse fantasma com um espelho.",
-                20,
+                5,
                 0
         );
 
