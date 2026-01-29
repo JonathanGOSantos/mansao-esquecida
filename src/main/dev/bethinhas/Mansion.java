@@ -89,14 +89,14 @@ public class Mansion implements Serializable {
         // Fantasmas
         var PH001 = new FatPhantom(
                 "Pai",
-                "{player} entra em {location} e escuta uma voz dizendo:  \"...\"",
+                "{player} entra em {location} e escuta uma voz dizendo:  \"Estou com fome...\"",
                 "Você pode capturar esse fantasma lhe dando comida.",
                 List.of(FO001)
         );
 
         var PH002 = new FighterPhantom(
                 "Mãe",
-                "{player} entra {location} e escuta uma voz dizendo:  \"...\"",
+                "{player} entra {location} e escuta uma voz dizendo:  \"Saudades da minha familia...\"",
                 "Você pode capturar esse fantasma com uma foto da família.",
                 List.of(PI001),
                 5,
@@ -105,7 +105,7 @@ public class Mansion implements Serializable {
 
         var PH003 = new IntelligentPhantom(
                 "Filho",
-                "{player} entra {location} e escuta uma voz dizendo:  \"...\"",
+                "{player} entra {location} e escuta uma voz dizendo:  \"Mamãe, mamãe, mamãe...\"",
                 "Você pode capturar esse fantasma resolvendo um enigma.",
                 """
                         Nós éramos quatro no jantar, mas apenas uma sombra na parede. \
@@ -118,7 +118,7 @@ public class Mansion implements Serializable {
 
         var PH004 = new IntelligentPhantom(
                 "Filha",
-                "{player} entra {location} e escuta uma voz dizendo:  \"...\"",
+                "{player} entra {location} e escuta uma voz dizendo:  \"Querido irmão, onde você esta?\"",
                 "Você pode capturar esse fantasma resolvendo um enigma.",
                 """
                         Eu devoro todas as coisas: pássaros, feras, árvores e flores.\
