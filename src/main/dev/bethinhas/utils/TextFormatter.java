@@ -1,6 +1,6 @@
-package main.utils;
+package main.dev.bethinhas.utils;
 
-import main.Player;
+import main.dev.bethinhas.Player;
 
 public class TextFormatter {
 

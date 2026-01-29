@@ -1,11 +1,12 @@
-package main;
+package main.dev.bethinhas;
 
-import main.command.Command;
-import main.command.CommandRegistry;
-import main.command.LoadCommand;
-import main.command.SaveCommand;
-import main.map.Location;
-import main.view.Parser;
+import main.dev.bethinhas.command.Command;
+import main.dev.bethinhas.command.CommandRegistry;
+import main.dev.bethinhas.command.LoadCommand;
+import main.dev.bethinhas.command.SaveCommand;
+import main.dev.bethinhas.map.Location;
+import main.dev.bethinhas.utils.StoryTeller;
+import main.dev.bethinhas.view.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,6 @@ public class Game {
 
         System.out.println("Estado do jogo restaurado.");
         printRoomInfo();
-    }
-
-    private void createRooms() {
-        this.startLocation = this.mansion.getInitialLocation();
     }
 
     public void play() {
@@ -77,6 +74,9 @@ public class Game {
     }
 
     private void printWelcome() {
+        StoryTeller storyTeller = new StoryTeller();
+        storyTeller.playIntro("intro.txt", currentPlayer.getName());
+
         printRoomInfo();
     }
 

@@ -1,6 +1,6 @@
-package main.phantom;
+package main.dev.bethinhas.phantom;
 
-import main.Player;
+import main.dev.bethinhas.Player;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package main.map;
+package main.dev.bethinhas.map;
 
 import java.io.Serial;
 

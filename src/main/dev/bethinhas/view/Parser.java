@@ -1,4 +1,4 @@
-package main.view;
+package main.dev.bethinhas.view;
 
 import java.util.*;
 

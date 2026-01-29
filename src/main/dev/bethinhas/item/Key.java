@@ -1,6 +1,6 @@
-package main.item;
+package main.dev.bethinhas.item;
 
-import main.map.Location;
+import main.dev.bethinhas.map.Location;
 
 import java.io.Serial;
 

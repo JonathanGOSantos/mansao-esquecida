@@ -1,4 +1,4 @@
-package main;
+package main.dev.bethinhas;
 
 import java.io.Serial;
 import java.io.Serializable;

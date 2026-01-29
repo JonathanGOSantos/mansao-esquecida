@@ -1,7 +1,7 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.utils.TextFormatter;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.utils.TextFormatter;
 
 public class LookCommand implements Command {
     @Override

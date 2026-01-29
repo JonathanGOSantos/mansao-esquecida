@@ -1,6 +1,7 @@
-package main.phantom;
+package main.dev.bethinhas.phantom;
 
-import main.Player;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.item.Item;
 
 import java.io.Serial;
 import java.util.ArrayList;
@@ -10,29 +11,11 @@ public class FatPhantom extends Phantom {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private List<String> itemsNamesForCapture;
-    private List<String> publicItemsNamesForCapture;
+    private List<Item> itemsForCapture;
 
-    public FatPhantom(String name, String introText, String whoCapture, List<String> itemsNamesForCapture) {
+    public FatPhantom(String name, String introText, String whoCapture, List<Item> itemsForCapture) {
         super(name, introText, whoCapture);
-
-        this.publicItemsNamesForCapture = itemsNamesForCapture;
-        this.itemsNamesForCapture = new ArrayList<>(publicItemsNamesForCapture);
-
-        for (String itemName : publicItemsNamesForCapture) {
-            this.itemsNamesForCapture.add(itemName);
-            this.itemsNamesForCapture.add(itemName.toLowerCase());
-            this.itemsNamesForCapture.add(itemName.toUpperCase());
-            this.itemsNamesForCapture.add(itemName.trim());
-        }
-    }
-
-    public List<String> getItemsNamesForCapture() {
-        return itemsNamesForCapture;
-    }
-
-    public void setItemsNamesForCapture(List<String> itemsNamesForCapture) {
-        this.itemsNamesForCapture = itemsNamesForCapture;
+        this.itemsForCapture = itemsForCapture;
     }
 
     @Override
@@ -41,8 +24,17 @@ public class FatPhantom extends Phantom {
 
         System.out.println("Qual item deseja usar para capturar o fantasma?");
         String response = player.getResponse();
-        if (!this.itemsNamesForCapture.contains(response)) throw new IllegalArgumentException("Esse item não pode ser utilizado para capturar o fantasma.");
+        Item item = player.findItem(response);
+        if (!this.itemsForCapture.contains(item)) throw new IllegalArgumentException("Esse item não pode ser utilizado para capturar o fantasma.");
         player.removeItem(response);
         this.setCaptured(true);;
+    }
+
+    public List<Item> getItemsForCapture() {
+        return itemsForCapture;
+    }
+
+    public void setItemsForCapture(List<Item> itemsForCapture) {
+        this.itemsForCapture = itemsForCapture;
     }
 }

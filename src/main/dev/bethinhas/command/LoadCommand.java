@@ -1,9 +1,9 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.Save;
-import main.Game;
-import main.utils.SaveManager;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.Save;
+import main.dev.bethinhas.Game;
+import main.dev.bethinhas.utils.SaveManager;
 
 public class LoadCommand implements Command {
     private final Game game;

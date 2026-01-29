@@ -1,8 +1,8 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.map.Location;
-import main.utils.TextFormatter;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.map.Location;
+import main.dev.bethinhas.utils.TextFormatter;
 
 public class BackCommand implements Command {
 

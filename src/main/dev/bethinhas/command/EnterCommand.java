@@ -1,8 +1,8 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.map.Location;
-import main.utils.TextFormatter;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.map.Location;
+import main.dev.bethinhas.utils.TextFormatter;
 
 public class EnterCommand implements Command {
     @Override
@@ -10,6 +10,7 @@ public class EnterCommand implements Command {
         if (argument.isBlank()) throw new RuntimeException("Ir para onde?");
 
         Location location = player.getCurrentLocation().getExit(argument);
+        if (location == null) throw new RuntimeException("Ir para onde?");
         if (location.isLocked()) throw new RuntimeException("O cômodo está trancada, para entrar, deve destrancar primeiro.");
 
         player.go(argument);

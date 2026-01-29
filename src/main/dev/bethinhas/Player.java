@@ -1,9 +1,9 @@
-package main;
+package main.dev.bethinhas;
 
-import main.item.Item;
-import main.map.Location;
-import main.phantom.Phantom;
-import main.view.Parser;
+import main.dev.bethinhas.item.Item;
+import main.dev.bethinhas.map.Location;
+import main.dev.bethinhas.phantom.Phantom;
+import main.dev.bethinhas.view.Parser;
 
 import java.io.Serial;
 import java.io.Serializable;

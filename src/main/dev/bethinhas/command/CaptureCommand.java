@@ -1,8 +1,8 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.phantom.Phantom;
-import main.utils.TextFormatter;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.phantom.Phantom;
+import main.dev.bethinhas.utils.TextFormatter;
 
 public class CaptureCommand implements Command {
     @Override

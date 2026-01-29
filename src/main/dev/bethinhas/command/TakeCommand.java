@@ -1,7 +1,7 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.item.Item;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.item.Item;
 
 public class TakeCommand implements Command {
 

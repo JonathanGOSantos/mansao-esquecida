@@ -1,6 +1,6 @@
-package main.utils;
+package main.dev.bethinhas.utils;
 
-import main.Save;
+import main.dev.bethinhas.Save;
 import java.io.*;
 
 public class SaveManager {

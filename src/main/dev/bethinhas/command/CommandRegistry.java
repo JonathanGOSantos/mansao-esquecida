@@ -1,4 +1,4 @@
-package main.command;
+package main.dev.bethinhas.command;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,6 +23,9 @@ public class CommandRegistry {
         registerCommand(new UnlockCommand(), "destrancar");
 
         registerCommand(new QuitCommand(), "sair");
+
+        registerCommand(new ReadCommand(), "ler");
+        registerCommand(new ShowCommand(), "ver");
     }
 
     public void registerCommand(Command command, String... aliases) {

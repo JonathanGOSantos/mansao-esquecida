@@ -1,6 +1,6 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
+import main.dev.bethinhas.Player;
 
 public class QuitCommand implements Command {
     @Override

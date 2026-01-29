@@ -1,9 +1,9 @@
-package main.command;
+package main.dev.bethinhas.command;
 
-import main.Player;
-import main.item.Item;
-import main.item.Key;
-import main.map.Location;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.item.Item;
+import main.dev.bethinhas.item.Key;
+import main.dev.bethinhas.map.Location;
 
 public class UnlockCommand implements Command {
     @Override

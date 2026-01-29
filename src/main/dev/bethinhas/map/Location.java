@@ -1,8 +1,8 @@
-package main.map;
+package main.dev.bethinhas.map;
 
-import main.item.Item;
-import main.item.Key;
-import main.phantom.Phantom;
+import main.dev.bethinhas.item.Item;
+import main.dev.bethinhas.item.Key;
+import main.dev.bethinhas.phantom.Phantom;
 
 import java.io.Serial;
 import java.io.Serializable;

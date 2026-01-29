@@ -1,20 +1,24 @@
-package main.phantom;
+package main.dev.bethinhas.phantom;
 
-import main.Player;
-import main.item.Item;
+import main.dev.bethinhas.Player;
+import main.dev.bethinhas.item.Item;
 
 import java.io.Serial;
+import java.util.List;
 
 public class FighterPhantom extends Phantom {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    private List<Item> itemsForCapture;
+
     private int health;
     private int maxHealth;
     private int attackPower;
 
-    public FighterPhantom(String name, String introText, String whoCapture, int maxHealth, int attackPower) {
+    public FighterPhantom(String name, String introText, String whoCapture, List<Item> itemsForCapture, int maxHealth, int attackPower) {
         super(name, introText, whoCapture);
+        this.itemsForCapture = itemsForCapture;
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.attackPower = attackPower;
@@ -50,7 +54,7 @@ public class FighterPhantom extends Phantom {
 
         System.out.println("Qual item deseja utilizar para batalhar com o fantasma?");
         Item equippedItem = player.findItem(player.getResponse());
-        if (equippedItem != null && equippedItem.getName().equalsIgnoreCase("Espelho")) {
+        if (equippedItem != null && this.itemsForCapture.contains(equippedItem)) {
             this.health = 0;
             this.setCaptured(true);
             System.out.println("Você levanta o Espelho! O " + this.getName() + " vê seu próprio reflexo distorcido, grita de horror e é sugado para dentro do espelho! Capturado!");
