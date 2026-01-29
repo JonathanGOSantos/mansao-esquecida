@@ -57,7 +57,10 @@ public class FighterPhantom extends Phantom {
         if (equippedItem != null && this.itemsForCapture.contains(equippedItem)) {
             this.health = 0;
             this.setCaptured(true);
-            System.out.println("Você levanta o Espelho! O " + this.getName() + " vê seu próprio reflexo distorcido, grita de horror e é sugado para dentro do espelho! Capturado!");
+            if (equippedItem instanceof Picture) {
+                System.out.println("Você abre a foto a mostra ao fantasma.");
+            }
+            System.out.println("Ao ver sua familía, " + this.name + " cai em profundas lamentações e é capturado.");
             return;
         }
 
