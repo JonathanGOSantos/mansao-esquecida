@@ -1,5 +1,13 @@
 package main.dev.bethinhas.command;
 
+import main.dev.bethinhas.command.game.QuitCommand;
+import main.dev.bethinhas.command.location.LookCommand;
+import main.dev.bethinhas.command.location.UnlockCommand;
+import main.dev.bethinhas.command.phantom.CaptureCommand;
+import main.dev.bethinhas.command.player.*;
+import main.dev.bethinhas.command.view.ReadCommand;
+import main.dev.bethinhas.command.view.ShowCommand;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

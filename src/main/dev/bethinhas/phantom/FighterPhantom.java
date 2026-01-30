@@ -1,7 +1,10 @@
 package main.dev.bethinhas.phantom;
 
 import main.dev.bethinhas.Player;
+import main.dev.bethinhas.item.Food;
 import main.dev.bethinhas.item.Item;
+import main.dev.bethinhas.item.Mail;
+import main.dev.bethinhas.item.Picture;
 
 import java.io.Serial;
 import java.util.List;
@@ -49,22 +52,24 @@ public class FighterPhantom extends Phantom {
     }
 
     @Override
-    public void interact(Player player) {
-        if (this.isCaptured()) throw new RuntimeException("O fantasma já está capturado.");
+    public PhantomInteractResult capture(Player player) {
+        if (this.isCaptured()) return new PhantomInteractResult(true, "Fantasma já capturado anteriormente.");
 
         System.out.println("Qual item deseja utilizar para batalhar com o fantasma?");
-        Item equippedItem = player.findItem(player.getResponse());
+        Item equippedItem = player.findItem(player.getResponse()).orElse(null);
+
         if (equippedItem != null && this.itemsForCapture.contains(equippedItem)) {
             this.health = 0;
             this.setCaptured(true);
-            if (equippedItem instanceof Picture) {
-                System.out.println("Você abre a foto a mostra ao fantasma.");
-            }
-            System.out.println("Ao ver sua familía, " + this.name + " cai em profundas lamentações e é capturado.");
-            return;
+            return switch (equippedItem) {
+                case Picture picture -> new PhantomInteractResult(true, "Você abre a foto a mostra ao fantasma.", "Ao ver sua familía, " + this.getName() + " cai em profundas lamentações e é capturado.");
+                case Mail mail -> new PhantomInteractResult(true, "Não pensei ainda");
+                case Food food -> new PhantomInteractResult(true, "Não pensei ainda");
+                default -> new PhantomInteractResult(true, "Algo que não estava nos planos...");
+            };
         }
 
-        while (!isCaptured()) {
+        while (true) {
             int playerDamage = calculateDamage(equippedItem);
             if (playerDamage < 5 && Math.random() > 0.7) {
                 System.out.println("Você tenta atacar o fantasma mas erra o golpe.\n");
@@ -76,16 +81,20 @@ public class FighterPhantom extends Phantom {
 
             if (this.health == 0) {
                 this.setCaptured(true);
-                System.out.println("O fantasma cai de joelhos e se dissipa. Você venceu a luta!");
-                return;
+                break;
             }
 
             int phantomDamage = phantomDamage(player);
             player.takeDamage(phantomDamage);
+
             if (phantomDamage == 0) {
                 System.out.println("O fantasma tenta contra-atacar mas erra o golpe.");
             } else {
                 System.out.println("O fantasma contra ataca e te causa " + phantomDamage + " de dano!");
+            }
+
+            if (player.getHealth() <= 0) {
+                return new PhantomInteractResult(false, "Você morreu...");
             }
 
             System.out.println("Pressione 'enter' para continuar para o próximo round...");
@@ -94,6 +103,12 @@ public class FighterPhantom extends Phantom {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+
+        if (isCaptured()) {
+            return new PhantomInteractResult(true, "O fantasma cai de joelhos e se dissipa. Você venceu a luta!");
+        } else {
+            return new PhantomInteractResult(false, "Algo deu errado para você...");
         }
     }
 
