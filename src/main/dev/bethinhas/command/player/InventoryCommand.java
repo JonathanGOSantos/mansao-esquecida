@@ -1,6 +1,8 @@
-package main.dev.bethinhas.command;
+package main.dev.bethinhas.command.player;
 
 import main.dev.bethinhas.Player;
+import main.dev.bethinhas.command.Command;
+import main.dev.bethinhas.command.CommandResult;
 import main.dev.bethinhas.item.Item;
 
 import java.util.Set;
@@ -9,7 +11,7 @@ import java.util.stream.Collectors;
 public class InventoryCommand implements Command {
 
     @Override
-    public void execute(Player player, String argument) {
+    public CommandResult execute(Player player, String argument) {
         Set<Item> inventory = player.getInventory();
         StringBuilder sb = new StringBuilder();
 
@@ -22,6 +24,6 @@ public class InventoryCommand implements Command {
                     .collect(Collectors.joining(", ", "", "."));
             sb.append(itemsStr);
         }
-        System.out.println(sb);
+        return new CommandResult(true, sb.toString());
     }
 }

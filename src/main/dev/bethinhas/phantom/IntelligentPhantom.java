@@ -37,21 +37,25 @@ public class IntelligentPhantom extends Phantom {
     }
 
     @Override
-    public void interact(Player player) {
-        if (this.isCaptured()) throw new RuntimeException("O fantasma já está capturado.");
+    public PhantomInteractResult capture(Player player) {
+        if (this.isCaptured()) return new PhantomInteractResult(true, "Fantasma já capturado anteriormente.");
 
         System.out.println("Enigma: " + puzzleDescription);
         System.out.println("Qual sua resposta?");
         String response = player.getResponse();
 
-        if (response == null) throw new IllegalArgumentException("A resposta não pode ser nula.");
+        while (response.isBlank()) {
+            System.out.println("Sua resposta não pode ser vazia.");
+            System.out.println("Qual sua resposta?");
+            player.getResponse();
+        }
 
         if (puzzleResponses.contains(response.toLowerCase())) {
             this.setCaptured(true);
-            System.out.println("Parabéns, você acertou! Fantasma capturado com sucesso.");
+            return new PhantomInteractResult(true, "Parabéns, você soube a resposta correta!");
         } else {
-            System.out.println("Você errou e perdeu 1 de vida. Estude mais e tente novamente.");
             player.takeDamage(1);
+            return new PhantomInteractResult(false, "Você errou e perdeu 1 de vida. Estude mais e tente novamente.");
         }
     }
 }

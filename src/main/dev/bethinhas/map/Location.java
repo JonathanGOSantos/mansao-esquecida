@@ -73,8 +73,8 @@ public abstract class Location implements Serializable {
         this.exits = exits;
     }
 
-    public Phantom getPhantom() {
-        return phantom;
+    public Optional<Phantom> getPhantom() {
+        return Optional.of(phantom);
     }
 
     public void setPhantom(Phantom phantom) {
@@ -147,8 +147,8 @@ public abstract class Location implements Serializable {
         this.code = code;
     }
 
-    public Location getExit(String room) {
-        return this.exits.get(room);
+    public Optional<Location> getExit(String to) {
+        return Optional.ofNullable(this.exits.get(to));
     }
 
     public void addExit(String to, Location location) {
@@ -170,21 +170,12 @@ public abstract class Location implements Serializable {
         }
     }
 
-    public Item findItem(String itemName) {
+    public Optional<Item> findItem(String itemName) {
         if (itemName.isBlank()) throw new RuntimeException();
 
         return items.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(itemName))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Item não encontrado."));
-    }
-
-    public Item takeItem(String itemName) {
-        Item item = findItem(itemName);
-
-        this.items.remove(item);
-
-        return item;
+                .findFirst();
     }
 
     public void removeItem(Item item) {

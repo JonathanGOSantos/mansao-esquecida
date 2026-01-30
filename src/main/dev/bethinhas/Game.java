@@ -2,8 +2,9 @@ package main.dev.bethinhas;
 
 import main.dev.bethinhas.command.Command;
 import main.dev.bethinhas.command.CommandRegistry;
-import main.dev.bethinhas.command.LoadCommand;
-import main.dev.bethinhas.command.SaveCommand;
+import main.dev.bethinhas.command.CommandResult;
+import main.dev.bethinhas.command.game.LoadCommand;
+import main.dev.bethinhas.command.game.SaveCommand;
 import main.dev.bethinhas.map.Location;
 import main.dev.bethinhas.utils.StoryTeller;
 import main.dev.bethinhas.view.Parser;
@@ -52,14 +53,16 @@ public class Game {
                 List<String> parts = new ArrayList<>(List.of(fullLine.split(" ")));
                 String commandWord = parts.removeFirst();
                 String argument = parts.stream().collect(Collectors.joining(" ", "", ""));
-                currentPlayer.setInput(argument);
 
                 Command command = commandRegistry.getCommand(commandWord);
 
                 if (command == null) throw new IllegalArgumentException("Não entendi o que é '" + commandWord + "'...");
-                command.execute(currentPlayer, argument);
+                CommandResult result = command.execute(currentPlayer, argument);
+                for (String message : result.messages()) {
+                    System.out.println(message);
+                }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Erro: " + e.getMessage());
             }
         }
     }

@@ -55,5 +55,5 @@ public abstract class Phantom implements Serializable {
         this.whoCapture = whoCapture;
     }
 
-    public abstract void interact(Player player);
+    public abstract PhantomInteractResult capture(Player player);
 }
