@@ -61,7 +61,7 @@ public class Player implements Serializable {
         inventory.remove(item);
     }
 
-    public void registerRoom(Location location) {
+    public void registerLocation(Location location) {
         if (location == null) return;
         this.locationPath.push(location);
     }

@@ -25,7 +25,7 @@ public class EnterCommand implements Command {
         }
 
         player.setCurrentLocation(location);
-        player.registerRoom(location);
+        player.registerLocation(location);
 
         return new CommandResult(true, TextFormatter.format(location.getLocationInfo(), player));
     }

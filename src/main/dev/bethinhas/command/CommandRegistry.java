@@ -20,7 +20,7 @@ public class CommandRegistry {
         registerCommand(new EnterCommand(), "entre", "ir", "entrar", "vá", "va");
         registerCommand(new BackCommand(), "voltar", "volte");
 
-        registerCommand(new LookCommand(), "olhar", "ver");
+        registerCommand(new LookCommand(), "olhar");
 
         registerCommand(new InventoryCommand(), "inventario");
         registerCommand(new TakeCommand(), "pegar", "pegue", "coletar", "colete");
@@ -33,7 +33,7 @@ public class CommandRegistry {
         registerCommand(new QuitCommand(), "sair");
 
         registerCommand(new ReadCommand(), "ler");
-        registerCommand(new ShowCommand(), "ver");
+        registerCommand(new ShowCommand(), "exibir", "ver");
     }
 
     public void registerCommand(Command command, String... aliases) {
